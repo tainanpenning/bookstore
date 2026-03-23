@@ -23,11 +23,12 @@ def test_create_order():
 
     data = {
         'user': user.id,
+        'products_id': [product.id],
         'product': [
             {
                 'title': 'Produto',
                 'price': 100,
-                'category': [category.id],
+                'categories_id': [category.id],
             }
         ],
     }

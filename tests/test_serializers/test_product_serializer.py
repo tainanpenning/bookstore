@@ -15,7 +15,7 @@ def test_product_serializer():
         'title': 'Teste serializer',
         'description': 'Testando o serializer...',
         'price': 999,
-        'category': [category.id],
+        'categories_id': [category.id],
     }
 
     serializer = ProductSerializer(data=data)

@@ -1,4 +1,21 @@
 {
   "python-envs.defaultEnvManager": "ms-python.python:poetry",
-  "python-envs.defaultPackageManager": "ms-python.python:poetry"
+  "python-envs.defaultPackageManager": "ms-python.python:poetry",
+  "python-envs.pythonProjects": [
+    {
+      "path": "tests",
+      "envManager": "ms-python.python:poetry",
+      "packageManager": "ms-python.python:poetry"
+    },
+    {
+      "path": "tests/test_models",
+      "envManager": "ms-python.python:poetry",
+      "packageManager": "ms-python.python:poetry"
+    },
+    {
+      "path": "tests/test_serializers",
+      "envManager": "ms-python.python:poetry",
+      "packageManager": "ms-python.python:poetry"
+    }
+  ]
 }
