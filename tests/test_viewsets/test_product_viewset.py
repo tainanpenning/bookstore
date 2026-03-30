@@ -19,6 +19,7 @@ class TestProductViewSet(APITestCase):
             title='pro controller',
             price=200.00,
         )
+        self.category = CategoryFactory()
 
     def test_get_all_product(self):
         response = self.client.get(
@@ -29,17 +30,16 @@ class TestProductViewSet(APITestCase):
 
         product_data = json.loads(response.content)
 
-        self.assertEqual(product_data[0]['title'], self.product.title)
-        self.assertEqual(product_data[0]['price'], self.product.price)
-        self.assertEqual(product_data[0]['active'], self.product.active)
+        self.assertEqual(product_data['results'][0]['title'], self.product.title)
+        self.assertEqual(product_data['results'][0]['price'], self.product.price)
+        self.assertEqual(product_data['results'][0]['active'], self.product.active)
 
     def test_create_product(self):
-        category = CategoryFactory()
         data = json.dumps(
             {
                 'title': 'notebook',
                 'price': 800.00,
-                'categories_id': [category.id],
+                'categories_id': [self.category.id],
             }
         )
 
