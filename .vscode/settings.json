@@ -17,5 +17,6 @@
       "envManager": "ms-python.python:poetry",
       "packageManager": "ms-python.python:poetry"
     }
-  ]
+  ],
+  "makefile.configureOnOpen": false
 }
