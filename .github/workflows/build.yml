@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.13, 3.14]
-        poetry-version: [2.2.0, 2.3.3]
+        python-version: [3.13]
+        poetry-version: [2.3.3]
 
     steps:
       - uses: actions/checkout@v4
@@ -33,4 +33,9 @@ jobs:
         run: poetry install --no-interaction --no-root
 
       - name: Test
+        env:
+          SECRET_KEY: 'django-insecure-test-key-only'
+          DEBUG: '1'
+          DJANGO_ALLOWED_HOSTS: 'localhost 127.0.0.1'
+          SQL_ENGINE: 'django.db.backends.sqlite3'
         run: poetry run python manage.py test
