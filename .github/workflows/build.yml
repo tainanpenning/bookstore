@@ -7,13 +7,13 @@ env:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     strategy:
       fail-fast: false
       matrix:
         python-version: [3.13, 3.14]
-        poetry-version: [2.2, 2.3]
-
-    runs-on: ubuntu-latest
+        poetry-version: [2.2.0, 2.3.3]
 
     steps:
       - uses: actions/checkout@v4
@@ -22,18 +22,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
 
       - name: Install Poetry ${{ matrix.poetry-version }}
         run: |
-          python -m ensurepip
-          python -m pip install --upgrade pip
-          python -m pip install poetry==${{ matrix.poetry-version }}
-      - name: View Poetry --help
-        run: poetry --help
+          pip install --upgrade pip
+          pip install poetry==${{ matrix.poetry-version }}
 
       - name: Install dependencies
-        shell: bash
-        run: python -m poetry install
+        run: poetry install --no-interaction --no-root
 
       - name: Test
         run: poetry run python manage.py test
