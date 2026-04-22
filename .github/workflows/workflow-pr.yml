@@ -26,8 +26,12 @@ jobs:
         run: python -m poetry install
 
       - name: Test
+        env:
+          DJANGO_ALLOWED_HOSTS: "localhost 127.0.0.1"
+          SECRET_KEY: "django-insecure-test-key-only"
         run: |
           poetry run python manage.py test
+
       - name: Wemake Python Styleguide
         uses: wemake-services/wemake-python-styleguide@master
         continue-on-error: true
