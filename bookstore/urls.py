@@ -20,10 +20,14 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework.authtoken.views import obtain_auth_token
 
+from bookstore.views import hello_world, update
+
 urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     re_path('bookstore/(?P<version>(v1|v2))/', include('order.urls')),
     re_path('bookstore/(?P<version>(v1|v2))/', include('product.urls')),
+    path('update_server/', update, name='update'),
+    path('hello_world/', hello_world, name='hello_world'),
 ]
