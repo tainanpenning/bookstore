@@ -26,6 +26,14 @@ SECRET_KEY = 'django-insecure-r_**3$3v(udoe)^(nkkjp)k^p_i3be4^jeoyb*jcg7d57mzd%s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
+INSTALLED_APPS = [...]
+
+MIDDLEWARE = [...]
+
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -153,7 +161,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
-
-if DEBUG:
-    INSTALLED_APPS += ["debug_toolbar"]
-    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
